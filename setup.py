@@ -49,7 +49,7 @@ with codecs.open('README.rst', 'r', 'utf-8') as fd:
       author='Google Inc.',
       maintainer='Bill Wendling',
       maintainer_email='morbo@google.com',
-      packages=['contrib', 'yapf', 'yapf.yapflib', 'yapftests'],
+      packages=['contrib', 'contrib.fixers', 'yapf', 'yapf.yapflib', 'yapftests'],
       classifiers=[
           'Development Status :: 4 - Beta',
           'Environment :: Console',
