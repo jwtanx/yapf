@@ -2,6 +2,37 @@
 YAPF
 ====
 
+TL;DR
+=====
+
+To install `yapf` from the "quote-fixers" branch:
+
+.. code-block:: bash
+
+    pip install git+https://github.com/jwtanx/yapf.git@quote-fixers
+
+Hueristic search for the majority of quotes and use it:
+
+.. code-block:: bash
+
+    yapf -i "--style={based_on_style: google, column_limit: 80, indent_width: 2}" --fixers quotes -r .
+
+Forcing all quotes to be single quotes:
+
+.. code-block:: bash
+
+    yapf -i "--style={based_on_style: google, column_limit: 80, indent_width: 2}" --fixers quotes --force-quote-type single -r .
+
+Forcing all quotes to be double quotes:
+
+.. code-block:: bash
+
+    yapf -i "--style={based_on_style: google, column_limit: 80, indent_width: 2}" --fixers quotes --force-quote-type double -r .
+
+
+Official Notes
+==============
+
 .. image:: https://badge.fury.io/py/yapf.svg
     :target: https://badge.fury.io/py/yapf
     :alt: PyPI version
