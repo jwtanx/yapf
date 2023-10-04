@@ -5,6 +5,7 @@ YAPF
 TL;DR
 =====
 
+1. Quotes:
 To install `yapf` from the "quote-fixers" branch:
 
 .. code-block:: bash
@@ -28,6 +29,15 @@ Forcing all quotes to be double quotes:
 .. code-block:: bash
 
     yapf -i "--style={based_on_style: google, column_limit: 80, indent_width: 2}" --fixers quotes --force-quote-type double -r .
+
+2. Naming convention (Only for the names after the keyword `class` and `def`)
+Due to the fact that we have string, we are not going to change the naming convention for all the variable, maybe a future work to detect variable instead of string
+
+Enabling the feature:
+
+.. code-block:: bash
+
+    yapf -i "--style={based_on_style: google, column_limit: 80, indent_width: 2}" --class-method-naming -r .
 
 
 Official Notes
@@ -213,7 +223,7 @@ with a ``[yapf]`` heading. For example:
 
 The ``based_on_style`` setting determines which of the predefined styles this
 custom style is based on (think of it like subclassing). Four
-styles are predefined: ``pep8`` (default), ``chromium``, ``google`` and 
+styles are predefined: ``pep8`` (default), ``chromium``, ``google`` and
 ``facebook`` (see ``_STYLE_NAME_TO_FACTORY`` in style.py_).
 
 .. _style.py: https://github.com/google/yapf/blob/master/yapf/yapflib/style.py#L445
@@ -686,16 +696,16 @@ Knobs
     ``b`` in this code:
 
     .. code-block:: python
-      
+
       abcdef(
           aReallyLongThing: int,
           b: [Int,
               Int])
-   
+
     With the new knob this is split as:
 
     .. code-block:: python
-      
+
       abcdef(
           aReallyLongThing: int,
           b: [Int, Int])
