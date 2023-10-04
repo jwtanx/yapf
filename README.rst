@@ -5,7 +5,8 @@ YAPF
 TL;DR
 =====
 
-1. Quotes:
+1. Quotes
+
 To install `yapf` from the "quote-fixers" branch:
 
 .. code-block:: bash
@@ -31,6 +32,13 @@ Forcing all quotes to be double quotes:
     yapf -i "--style={based_on_style: google, column_limit: 80, indent_width: 2}" --fixers quotes --force-quote-type double -r .
 
 2. Naming convention (Only for the names after the keyword `class` and `def`)
+
+To install `yapf` from the "class-method-standardisation" branch:
+
+.. code-block:: bash
+
+    pip install git+https://github.com/jwtanx/yapf.git@class-method-standardisation
+
 Due to the fact that we have string, we are not going to change the naming convention for all the variable, maybe a future work to detect variable instead of string
 
 Enabling the feature:
