@@ -5,6 +5,12 @@ YAPF
 TL;DR
 =====
 
+0. Installing the add-ons
+
+.. code-block:: bash
+
+    pip install git+https://github.com/jwtanx/yapf.git@addons-main
+
 1. Quotes
 
 To install `yapf` from the "quote-fixers" branch:
