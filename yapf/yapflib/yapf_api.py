@@ -37,6 +37,7 @@ import re
 import sys
 
 from contrib.fixers import fixers_api
+from contrib.fixers.class_method_standardiser import standardise_naming
 
 from lib2to3.pgen2 import parse
 
@@ -151,6 +152,10 @@ def FormatCode(unformatted_source,
     unformatted_source += '\n'
 
   unformatted_source = fixers_api.Pre2to3FixerRun(unformatted_source, options)
+
+  # Fixer for standardizing class and method naming
+  if options.get('class_method_naming'):
+    unformatted_source = standardise_naming(unformatted_source)
 
   try:
     tree = pytree_utils.ParseCodeToTree(unformatted_source)

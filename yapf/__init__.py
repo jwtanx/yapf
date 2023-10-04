@@ -131,6 +131,12 @@ def main(argv):
       help=('run yapf in parallel when formatting multiple files. Requires '
             'concurrent.futures in Python 2.X'))
 
+  # Standardising the class and the function naming
+  parser.add_argument(
+      '--class-method-naming',
+      action='store_true',
+      help="Use the Google style for class and method name")
+
   parser.add_argument(
       '--fixers',
       action='store',
@@ -138,6 +144,7 @@ def main(argv):
       metavar='{' + ', '.join(fixers_api.AVAILABLE_FIXERS) + '}',
       type=lambda x: [s.strip().lower() for s in x.split(',')],
       help='comma-separated list of fixers to run on code')
+
   parser.add_argument(
       '--force-quote-type',
       action='store',
@@ -181,6 +188,7 @@ def main(argv):
       'fixers': args.fixers,
       'force_quote_type': args.force_quote_type,
       'lines': lines,
+      'class_method_naming': args.class_method_naming,
   }
 
   if not args.files:
