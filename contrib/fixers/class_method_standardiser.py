@@ -63,13 +63,11 @@ def _camel_case_class(code):
     else:
       name_ls = parts
 
-    return "class " + "".join(name_ls).replace("()", "")
+    return "class " + "".join(name_ls)
 
   # Use regex to find all valid Python identifiers (class names) and replace them
-  # return re.sub(r"(?:\b(?i)class\s+)?[a-zA-Z_][a-zA-Z0-9_]*\b", replace, code)
-  return re.sub(
-      r"class \b[a-zA-Z_][a-zA-Z0-9_]*\b(\([a-zA-Z_]*[a-zA-Z0-9_.]*\))?:",
-      replace, code)
+  return re.sub(r"class \b[a-zA-Z_][a-zA-Z0-9_]*\b(\(|\:)", replace,
+                code).replace("()", "")
 
 
 def _snake_case_method(code):
