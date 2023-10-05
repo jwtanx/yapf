@@ -70,8 +70,16 @@ def _camel_case_class(code):
 
 def _snake_case_method(code):
 
+  compressed_code = re.sub("\s+", "", code)
+  exclude_decorator = ["classmethod"]
+
   def replace(match):
     name = match.group(1)
+
+    for deco in exclude_decorator:
+      if f"@{deco}def" + re.sub("\s+", "", name) in compressed_code:
+        return f"def {name}("
+
     converted = _snake_case(name)
     return f"def {converted}("
 
