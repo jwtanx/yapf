@@ -57,17 +57,15 @@ def _camel_case_class(code):
   def replace(match):
     row = match.group(0)
     name = row.split()[1]
-    parts = name.split("_")
-    if len(parts) > 1:
-      name_ls = [word.capitalize() for word in parts]
-    else:
-      name_ls = parts
-
-    return "class " + "".join(name_ls)
+    name = name.replace("()", "") if "()" in name.replace(" ", "") else name
+    parenthesis_ind = name.find("(")
+    end_ind = parenthesis_ind if parenthesis_ind != -1 else len(name)
+    parts = name[:end_ind].split("_")
+    name_ls = [word.capitalize() for word in parts] if len(parts) > 1 else parts
+    return "class " + "".join(name_ls) + name[end_ind:]
 
   # Use regex to find all valid Python identifiers (class names) and replace them
-  return re.sub(r"class \b[a-zA-Z_][a-zA-Z0-9_]*\b(\(|\:)", replace,
-                code).replace("()", "")
+  return re.sub(r"class [a-zA-Z_][a-zA-Z0-9_]*[\(\w*.*\)]*:", replace, code)
 
 
 def _snake_case_method(code):
